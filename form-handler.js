@@ -1,4 +1,3 @@
-// Configuração usando variáveis de ambiente
 async function handleFormSubmit(event) {
     event.preventDefault();
     
@@ -18,7 +17,7 @@ async function handleFormSubmit(event) {
 
     try {
         // Envio para Google Sheets
-        await fetch('/api/submit-to-sheets', {
+        const sheetsResponse = await fetch('/api/submit-to-sheets', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -26,7 +25,7 @@ async function handleFormSubmit(event) {
             body: JSON.stringify(data)
         });
         
-        googleSuccess = true;
+        googleSuccess = sheetsResponse.ok;
 
         // Envio para Supabase
         const supabaseResponse = await fetch('/api/submit-to-supabase', {
@@ -82,4 +81,5 @@ document.addEventListener('DOMContentLoaded', function() {
         form.addEventListener('submit', handleFormSubmit);
     }
 });
+
 

@@ -4,7 +4,7 @@
     |-- README.txt
 |-- api
     |-- submit-to-sheets.js
-    |-- submit-to-suoabase.js
+    |-- submit-to-supabase.js
 |-- form-handler.js
 |-- index.html
 |-- obrigado.css
