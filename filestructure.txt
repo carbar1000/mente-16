@@ -1,0 +1,14 @@
+|-- .gitignore
+|-- .vercel
+    |-- project.json
+    |-- README.txt
+|-- form-handler.js
+|-- index.html
+|-- obrigado.css
+|-- obrigado.html
+|-- README.md
+|-- TECHNICAL_SPECS.md
+|-- vercel.json
+|-- webform-mente-navigate.js
+|-- webform-mente.css
+|-- webform-mente.js

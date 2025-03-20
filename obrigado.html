@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obrigado!</title>
+    <link rel="stylesheet" href="./obrigado.css">
+    <style>
+        .centered-text {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="centered-text">
+        <h1 id="message"></h1>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const status = urlParams.get('status');
+        const messageElement = document.getElementById('message');
+
+        if (status === 'success') {
+            messageElement.textContent = 'Obrigado por enviar suas respostas! Suas informações foram recebidas com sucesso.';
+            messageElement.className = 'success';
+        } else if (status === 'error') {
+            messageElement.textContent = 'Ocorreu um erro ao enviar suas respostas. Por favor, tente novamente.';
+            messageElement.className = 'error';
+        } else {
+            messageElement.textContent = 'Obrigado por visitar!';
+        }
+    </script>
+</body>
+</html>

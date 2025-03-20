@@ -1,0 +1,46 @@
+/* Estilos específicos para a página obrigado.html */
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #121212;
+}
+
+.centered-text {
+    text-align: center;
+    max-width: 600px;
+    padding: 20px;
+}
+
+.centered-text h1 {
+    font-size: 2.5rem;
+    color: #FFA500;
+    margin-bottom: 20px;
+}
+
+.centered-text p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #cccccc;
+}
+
+/* Efeito de animação suave */
+.centered-text {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
