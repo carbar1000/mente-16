@@ -2,6 +2,9 @@
 |-- .vercel
     |-- project.json
     |-- README.txt
+|-- api
+    |-- submit-to-sheets.js
+    |-- submit-to-suoabase.js
 |-- form-handler.js
 |-- index.html
 |-- obrigado.css
