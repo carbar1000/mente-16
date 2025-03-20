@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'></text></svg>">
-    <meta name="theme-color" content="#ffffff">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Formulário de Pesquisa para descobrir se você tem mente empreendedora.">
@@ -13,48 +11,11 @@
             display: none;
         }
     </style>
-    <script src="/config/development.js"></script>
-<script>
-        // Função para testar a conexão com retry e timeout
-        console.log('Inicializando a conexão com Supabase...');
-
-        // Função de inicialização com retry
-        async function initializeSupabase() {
-            return true;
-        }
-
-        // Inicializar quando o DOM estiver pronto
-        document.addEventListener('DOMContentLoaded', () => {
-            async function checkSupabaseConnection() {
-                const statusDiv = document.getElementById('supabase-status');
-                statusDiv.style.display = 'block';
-                statusDiv.textContent = 'Testando conexão com Supabase...';
-
-                try {
-                    const response = await fetch('/api/health');
-                    const data = await response.json();
-
-                    if (data.status === 'ok') {
-                        statusDiv.style.backgroundColor = '#4CAF50';
-                        statusDiv.textContent = '✅ Conectado ao Supabase';
-                    } else {
-                        statusDiv.style.backgroundColor = '#f44336';
-                        statusDiv.textContent = `❌ Falha na conexão: ${data.message}`;
-                    }
-                } catch (error) {
-                    statusDiv.style.backgroundColor = '#f44336';
-                    statusDiv.textContent = `❌ Falha na conexão: ${error}`;
-                }
-            }
-
-            checkSupabaseConnection();
-        });
-    </script>
 </head>
 <body>
 
     <div id="intro" class="centered-text hide-on-click">
-        <h1>Tens Mente Empreendedora? >>>> 15.06 </h1>
+        <h1>Tens Mente Empreendedora? >>>> 16.06 </h1>
         <h3>Preencha este inquérito e descubra GRÁTIS agora!</h3>
         <div class="buttons">
             <button id="startButton" class="hide-on-click" onclick="startSurvey()">Comece Aqui →</button>
@@ -198,15 +159,9 @@
     </main>
     <div id="flashMessage" class="flash-message" role="alert"></div>
 
-    <!-- Adicione esta linha antes dos outros scripts -->
+    <!-- Carregar scripts na ordem correta -->
     <script src="webform-mente.js"></script>
     <script src="webform-mente-navigate.js"></script>
     <script src="form-handler.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('myForm');
-            form.addEventListener('submit', handleFormSubmit);
-        });
-    </script>
 </body>
 </html>
