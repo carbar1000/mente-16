@@ -17,6 +17,11 @@ export default async function handler(req, res) {
     try {
         const GOOGLE_SHEET_URL = process.env.GOOGLE_SHEET_URL;
         
+        console.log('Verificando configuração:', {
+            hasGoogleSheetUrl: !!GOOGLE_SHEET_URL,
+            urlLength: GOOGLE_SHEET_URL ? GOOGLE_SHEET_URL.length : 0
+        });
+        
         if (!GOOGLE_SHEET_URL) {
             console.error('GOOGLE_SHEET_URL não está configurada');
             return res.status(500).json({ error: 'Configuração do Google Sheets ausente' });
