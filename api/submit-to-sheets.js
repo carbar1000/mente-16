@@ -18,8 +18,14 @@ export default async function handler(req, res) {
         const GOOGLE_SHEET_URL = process.env.GOOGLE_SHEET_URL;
         
         if (!GOOGLE_SHEET_URL) {
-            throw new Error('GOOGLE_SHEET_URL não está configurada');
+            console.error('GOOGLE_SHEET_URL não está configurada');
+            return res.status(500).json({ error: 'Configuração do Google Sheets ausente' });
         }
+
+        console.log('Enviando para Google Sheets:', {
+            url: GOOGLE_SHEET_URL,
+            data: req.body
+        });
 
         const response = await fetch(GOOGLE_SHEET_URL, {
             method: 'POST',
@@ -30,12 +36,17 @@ export default async function handler(req, res) {
         });
 
         if (!response.ok) {
-            throw new Error('Falha ao enviar para Google Sheets');
+            const errorText = await response.text();
+            console.error('Resposta do Google Sheets:', errorText);
+            throw new Error(`Falha ao enviar para Google Sheets: ${response.status} ${errorText}`);
         }
 
         res.status(200).json({ success: true });
     } catch (error) {
-        console.error('Error:', error);
-        res.status(500).json({ error: error.message });
+        console.error('Error completo:', error);
+        res.status(500).json({ 
+            error: error.message,
+            stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+        });
     }
 }

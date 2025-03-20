@@ -17,6 +17,7 @@ async function handleFormSubmit(event) {
 
     try {
         // Envio para Google Sheets
+        console.log('Enviando para Google Sheets:', data);
         const sheetsResponse = await fetch('/api/submit-to-sheets', {
             method: 'POST',
             headers: {
@@ -25,9 +26,16 @@ async function handleFormSubmit(event) {
             body: JSON.stringify(data)
         });
         
-        googleSuccess = sheetsResponse.ok;
+        if (!sheetsResponse.ok) {
+            const errorText = await sheetsResponse.text();
+            console.error('Erro Google Sheets:', errorText);
+            throw new Error(`Erro Google Sheets: ${sheetsResponse.status} ${errorText}`);
+        }
+        
+        googleSuccess = true;
 
         // Envio para Supabase
+        console.log('Enviando para Supabase:', data);
         const supabaseResponse = await fetch('/api/submit-to-supabase', {
             method: 'POST',
             headers: {
@@ -43,14 +51,24 @@ async function handleFormSubmit(event) {
             })
         });
 
-        supabaseSuccess = supabaseResponse.ok;
+        if (!supabaseResponse.ok) {
+            const errorText = await supabaseResponse.text();
+            console.error('Erro Supabase:', errorText);
+            throw new Error(`Erro Supabase: ${supabaseResponse.status} ${errorText}`);
+        }
 
-        window.location.href = `obrigado.html?status=${(googleSuccess || supabaseSuccess) ? 'success' : 'error'}`;
+        supabaseSuccess = true;
 
     } catch (error) {
-        console.error('Erro ao enviar formulário:', error);
+        console.error('Erro detalhado:', error);
+    } finally {
         if (submitButton) submitButton.disabled = false;
-        window.location.href = 'obrigado.html?status=error';
+        
+        if (googleSuccess || supabaseSuccess) {
+            window.location.href = 'obrigado.html?status=success';
+        } else {
+            window.location.href = 'obrigado.html?status=error';
+        }
     }
 }
 
@@ -81,5 +99,6 @@ document.addEventListener('DOMContentLoaded', function() {
         form.addEventListener('submit', handleFormSubmit);
     }
 });
+
 
 
