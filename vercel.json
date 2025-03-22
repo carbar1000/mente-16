@@ -1,21 +1,35 @@
 {
   "version": 2,
+  "cleanUrls": true,
+  "public": true,
   "builds": [
-    { "src": "*.html", "use": "@vercel/static" },
-    { "src": "*.css", "use": "@vercel/static" },
-    { "src": "*.js", "use": "@vercel/static" },
-    { "src": "api/*.js", "use": "@vercel/node" }
+    {
+      "src": "**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "api/**/*.js",
+      "use": "@vercel/node"
+    }
   ],
-  "routes": [
-    { "src": "/api/(.*)", "dest": "/api/$1.js" },
-    { "src": "/", "dest": "/index.html" },
-    { "src": "/obrigado", "dest": "/obrigado.html" },
-    { "src": "/(.*)", "dest": "/$1" }
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    },
+    {
+      "source": "/obrigado",
+      "destination": "/obrigado.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ],
   "env": {
-    "SUPABASE_URL": "@supabase_url",
-    "SUPABASE_ANON_KEY": "@supabase_anon_key",
-    "GOOGLE_SCRIPT_URL": "@google_script_url"
+    "SUPABASE_URL": "supabase_url",
+    "SUPABASE_ANON_KEY": "supabase_anon_key",
+    "GOOGLE_SCRIPT_URL": "google_script_url"
   },
   "headers": [
     {
@@ -35,7 +49,11 @@
         }
       ]
     }
-  ]
+  ],
+  "github": {
+    "enabled": true,
+    "silent": true
+  }
 }
 
 
