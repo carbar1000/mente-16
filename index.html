@@ -11,6 +11,15 @@
             display: none;
         }
     </style>
+    <script>
+        window.env = {
+            SUPABASE_URL: '{{SUPABASE_URL}}',
+            SUPABASE_ANON_KEY: '{{SUPABASE_ANON_KEY}}',
+            GOOGLE_SCRIPT_URL: '{{GOOGLE_SCRIPT_URL}}'
+        };
+    </script>
+    <script type="module" src="supabase-config.js"></script>
+    <script src="webform-mente.js"></script>
 </head>
 <body>
 
@@ -158,9 +167,9 @@
     <main>
     </main>
     <div id="flashMessage" class="flash-message" role="alert"></div>
+    
 
     <!-- Carregar scripts na ordem correta -->
-    <script src="webform-mente.js"></script>
     <script src="webform-mente-navigate.js"></script>
     <script src="form-handler.js"></script>
 </body>

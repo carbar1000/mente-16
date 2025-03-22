@@ -77,7 +77,7 @@ SUPABASE_ANON_KEY=sua_chave
 GOOGLE_SHEET_ID=seu_id
 ```
 
-As variáveis do Supabase (`SUPABASE_URL` e `SUPABASE_ANON_KEY`) devem ser definidas no ficheiro `.env.local` para ambiente de teste local e nas configurações de variáveis de ambiente não públicas do Vercel para produção online.
+As variáveis do Supabase (`SUPABASE_URL` e `SUPABASE_ANON_KEY`) devem ser configuradas nas configurações de variáveis de ambiente não públicas do Vercel para produção online.
 
 ## 5. Fluxo de Dados
 1. Usuário preenche formulário
