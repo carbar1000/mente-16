@@ -101,6 +101,31 @@ async function handleFormSubmit(event) {
     }
 }
 
+async function handleSubmit(event) {
+  event.preventDefault();
+  
+  try {
+    const response = await fetch('/api/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(getFormData())
+    });
+
+    const result = await response.json();
+    
+    if (response.ok && result.redirect) {
+      window.location.href = result.redirect;
+    } else {
+      throw new Error(result.error || 'Submission failed');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    showFlashMessage('Erro ao enviar formulário. Tente novamente.', 'error');
+  }
+}
+
 function validateForm() {
     const form = document.getElementById('myForm');
     const requiredFields = ['A', 'B', 'C', 'Nome', 'Email'];
